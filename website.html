@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese Culture Society</title>
+    <meta name="author" content="Zachary Story">
+    <meta name="date" content="2025-02-12">
+    <meta name="last revised" content="2025-02-13">
+    <meta name="description" content="ETSU Japanese Culture Society">
+    <meta name="keywords" content="japanese, culture society, etsu, clubs, japan">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        body {
+            font-family: Georgia, serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: wheat;
+        }
+        
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-evenly; 
+            align-items: center; 
+            width: 100%;
+        }
+
+        .logo {
+            width: 200px; 
+            height: auto;
+        }
+
+        .logo.left {
+            margin-right: -15px; 
+        }
+
+        .logo.right {
+            margin-left: -15px; 
+        }
+
+        h1 {
+            text-align: center;
+            color: #00053E;
+            font-size: 40px;
+            margin: 0; 
+            flex-shrink: 0; 
+        }
+
+        
+        h1 span {
+            font-size: 30px;
+        }
+
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* Tab Buttons */
+        .tab {
+            background: #00053E;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+        .tab:hover {
+            background: #002080;
+        }
+
+        .tab.active {
+            background: #FF5733;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 2px solid #00053E;
+            border-radius: 5px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h4 {
+            color: #00053E;
+            text-align: center;
+            font-size: 20px;
+        }
+        hr {
+            border: 1px solid #00053E;
+        }
+
+        ul.member-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .picture {
+            width: 200px;
+            height: auto;
+            margin-right: 15px; 
+            border-radius: 50%;
+        }
+            
+        .shirt-container {
+            display: flex;
+            justify-content: center; /* Centers the image */
+            margin: 20px 0;
+        }
+
+        .shirt-picture {
+            width: 400px;  
+            height: auto;
+        }
+
+        .member-info {
+            font-size: 18px; 
+            color: #00053E; 
+            font-weight: bold;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 766px; 
+            height: 466px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            text-align: center; 
+            background-color: #00053E;
+        }
+    
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    
+        .carousel-slide img {
+            width: 100%;  
+            height: auto; 
+            object-fit: contain; 
+            max-width: 100%; 
+            max-height: 100%; 
+            border-radius: 10px;
+        }
+    
+        .active {
+            opacity: 1;
+        }
+  
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            width: 90%;
+            text-align: center;
+            border-radius: 5px;
+            z-index: 1; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
+        
+        .link {
+            color:white
+
+        }
+        
+        .carousel-container:hover .caption {
+            opacity: 1;
+        }
+    
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+    
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        ul.event-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-list li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #00053E;
+        }
+
+        .event-name {
+            font-weight: bold;
+            color: #2A4D73;
+        }
+
+        .event-date {
+            font-size: 16px;
+            color: #999; 
+            margin-left: 10px;
+        }
+
+        .event-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px; 
+        }
+
+        .event-list li span.event-name {
+            display: inline-block;
+            min-width: 250px;
+        }
+
+        .event-list li span.event-date {
+            font-style: italic;
+        }
+    </style>    
+</head>
+
+<body>
+    <div class="logo-container">
+         
+        <img src="images/Culture Society Logo.jpg" alt="Logo" class="logo left">
+        <h1>Welcome to the Japanese Culture Society!</h1>
+        <img src="images/Culture Society Logo.jpg" alt="Logo" class="logo right">
+       
+    </div>
+        
+    <h1><span lang="ja">日本文化会へようこそ！</span></h1>
+        
+    <hr>
+
+    <div class="tab-container">
+        <button class="tab active" onclick="showTab('about')">About</button>
+        <button class="tab" onclick="showTab('membership')">Membership</button>
+        <button class="tab" onclick="showTab('sponsor')">Sponsors</button>
+        <button class="tab" onclick="showTab('keyfigure')">Key Figures</button>
+        <button class="tab" onclick="showTab('schedule')">Event Schedule</button>
+        <button class="tab" onclick="showTab('contact')">Contact Us</button>
+        <button class="tab" onclick="showTab('guest-speakers')">Guest Speakers</button>
+    </div>
+
+    <section id="about" class='tab-content active'>
+           
+        <h4>About Us</h4>
+           
+        <p>
+            The Japanese Culture Society is a student-led organization dedicated to exploring and celebrating Japanese culture. Our mission is to foster an appreciation for Japan’s rich traditions, modern influences, and language through engaging activities and events.
+        </p>
+
+        <hr>
+        
+        <h4>What We Do</h4>
+
+        <p>
+            We have weekly meetings on Wednesdays at 6:30PM in Sam Wilson Hall Room 322. Those meetings will be held on one of these topics:
+        </p>
+
+        <ul>
+            <li><b>Cultural Events</b> – Experience traditional and modern Japanese festivities, including seasonal celebrations and cultural showcases.</li>
+            <li><b>Language & Learning</b> – Participate in Japanese language practice sessions and discussions about Japan’s history, customs, and etiquette.</li>
+            <li><b>Food & Cooking</b> – Learn about and try Japanese cuisine through cooking events and food tastings.</li>
+            <li><b>Community & Networking</b> – Meet fellow enthusiasts, collaborate on fun projects, and make lasting friendships with those who share an interest in Japanese culture.</li>
+        </ul>
+
+        <div class="carousel-container">
+
+            <div class="carousel-slide active">
+
+                <img src="images\SportsDay.jpeg" alt="Sports Day">
+                <div class="caption">Cultural Event - Japanese Sports Day Festival at ETSU!</div>
+                
+            </div>
+
+            <div class="carousel-slide">
+                
+                <img src="images/TeaCeremony.jpeg" alt="Tea Ceremony">
+                <div class="caption">Learning Proper Etiquette for Tea Ceremony Featuring Miku-san</div>
+                
+            </div>
+
+            <div class="carousel-slide">
+                    
+                <img src="https://img.youtube.com/vi/OuklTM3FEx0/maxresdefault.jpg" alt="Soran Bushi">
+                <div class="caption">ETSU Demonstrates Soran Bushi Dance at Nashville Sakura Festival 2024. <a class="link" href="https://www.youtube.com/watch?v=OuklTM3FEx0" target="_blank">Click Here to Watch. </a>
+                </div>
+                
+            </div>
+        </div>
+
+    </section>
+       
+    <section id="membership" class="tab-content">
+
+        <p>  
+            Throughout the semester, we host a variety of events that allow members and guests to experience Japanese culture firsthand.  
+            From hands-on food-making workshops to cultural celebrations and guest speaker sessions, our events provide a unique opportunity  
+            to learn, connect, and immerse yourself in Japan’s rich traditions.  
+            <br><br>  
+        
+            To help fund these experiences, we offer club memberships. While many events are open to everyone, some require an admission  
+            fee for non-members. By becoming a member, you gain free access to all paid events, making it a cost-effective way to participate  
+            while supporting the club. Additionally, members have the option to purchase an exclusive  
+            <b>Japanese Culture Society T-shirt</b> with their membership.  
+        </p>  
+        
+        <div class="shirt-container">
+            <img class="shirt-picture" src="images/Shirts.jpg" alt="Japanese Culture Society T-Shirts">  
+        </div>  
+        
+        <p>  
+            <b>Membership Pricing:</b>  
+        </p>  
+
+        <ul>  
+            <li><b>$20</b> – Includes a club membership and a Japanese Culture Society T-shirt for the <b>Fall 2024 & Spring 2025</b> semesters.</li>  
+            <li><b>$15</b> – Membership only (no T-shirt) for both semesters.</li>  
+            <li>Non-members can still attend paid events by paying an <b>admission fee</b> of <b>$2–$5</b>, depending on the event.</li>  
+        </ul>  
+        
+        <p>  
+            Members will also receive priority access to events if materials or food supplies are limited.  
+            <br><br>  
+        
+            <b>Some of our paid events include:</b>  
+        </p>  
+        
+        <ul>  
+            <li><b>Mochi Making</b> – Learn how to prepare and enjoy this beloved Japanese rice cake.</li>  
+            <li><b>Sushi Making</b> – Discover the art of crafting sushi and nigiri.</li>  
+            <li><b>Snack Tastings</b> – Sample a variety of traditional and modern Japanese snacks.</li>  
+            <li><b>Guest Speaker Sessions</b> – Engage with experts on Japanese language, culture, and history.</li>  
+        </ul>  
+
+    </section>
+
+    <section id="keyfigure" class="tab-content">
+            
+        <b>Key Figures:</b>
+            
+        <ul class="member-list">
+              
+            <li class="member">
+                <img class="picture" src="images/Tezuka picture.jpg" alt="Tezuka-Arnold">
+                <div class="member-info">Junko Tezuka-Arnold - Faculty member in charge of the club</div>
+            </li>
+               
+            <li class="member">
+                <img class="picture" src="images/Miku.jpg" alt="Miku">
+                <div class="member-info">Miku Kubota - Japan Outreach Initiative (JOI) Coordinator at ETSU</div>
+            </li>
+               
+            <li class="member">
+                <img class="picture" src="images/Alex.jpeg" alt="Alex">
+                <div class="member-info">Alex Gray - President</div>
+            </li>
+                
+            <li class="member">
+                <img class="picture" src="images/Adam.jpg" alt="Adam">
+                <div class="member-info">Adam Miller - Vice President</div>
+            </li>
+                
+            <li class="member">
+                <img class="picture" src="images/Rebecca.jpg" alt="Rebecca">
+                <div class="member-info">Rebecca Story - Secretary</div>
+            </li>
+                
+            <li class="member">
+                <img class="picture" src="images/Jade.webp" alt="Jade">
+                <div class="member-info">Jade Shelton - Treasurer</div>
+            </li>
+            
+        </ul>
+    </section>
+        
+    <section id="schedule" class="tab-content">
+            
+        <p>This is a list of the current scheduled events: (Be advised, some may change depending on the circumstances)</p>
+            
+        <div class="event-container">
+            <ul class="event-list">
+                <li><span class="event-name">Japanese Ninjago Post Cards</span> <span class="event-date">(01/29)</span></li>
+                <li><span class="event-name">Japanese Board Game Night</span> <span class="event-date">(02/05)</span></li>
+                <li><span class="event-name">Japanese Snack Tastings/Crafts</span> <span class="event-date">(02/12)</span></li>
+                <li><span class="event-name">Sushi/Nigiri (Paid Event)</span> <span class="event-date">(02/19)</span></li>
+                <li><span class="event-name">Animation/Manga</span> <span class="event-date">(02/26)</span></li>                    
+                <li><span class="event-name">Cosplay101 feat. Guest Speaker - KuronaHearts</span> <span class="event-date">(03/01) Saturday event</span></li>
+                <li><span class="event-name">Japanese Proverbs and Slang</span> <span class="event-date">(03/05)</span></li>
+                <li><span class="event-name">Mochi Making/Deserts (Paid Event)</span> <span class="event-date">(03/12)</span></li>
+            </ul>
+                
+            <ul class="event-list">
+                <li><span class="event-name">Sports Day</span> <span class="event-date">(March/April TBD) Saturday event</span></li>
+                <li><span class="event-name">Spring Break (No event)</span> <span class="event-date">(03/19)</span></li>
+                <li><span class="event-name">Kimono/Yukata Try-on and Learning</span> <span class="event-date">(03/26)</span></li>
+                <li><span class="event-name">Origami/Mizuhiki Knotting</span> <span class="event-date">(04/02)</span></li>
+                <li><span class="event-name">Questions to Japanese Students</span> <span class="event-date">(04/09)</span></li>
+                <li><span class="event-name">Omikuji Fortune Making</span> <span class="event-date">(04/16)</span></li>
+                <li><span class="event-name">Movie/Japanese Potluck</span> <span class="event-date">(04/23)</span></li>
+                <li><span class="event-name">End of Year Party</span> <span class="event-date">(04/30)</span></li>
+            </ul>
+            
+        </div>
+    </section>
+
+    <section id="contact" class="tab-content">
+       
+        <b>Contact Us</b>
+        <p> Join our Discord for the latest updates. <br>
+            We look forward to seeing you at these events.
+        </p>
+        
+    </section>
+
+    <section id="sponsor" class="tab-content">
+        <h2>Our Sponsors</h2>
+        <p>We greatly appreciate the businesses and individuals who support our club. Their generosity helps us host cultural events, provide materials, and enhance our community’s experience.</p>
+    
+        <ul id="sponsor-list">
+            <li><i>The list is currently empty. Be the first to support us today!</i></li>
+        </ul>
+    
+        <p>Interested in sponsoring our club? <br>
+        Contact us to learn how you can contribute and have your name featured here.</p>
+    </section>
+
+    <section id="guest-speakers" class="tab-content">
+        <h2>Special Guest Speakers</h2>
+        <p>We are honored to host guest speakers who share their knowledge and experiences about Japanese culture, history, language, and more.</p>
+    
+        <ul id="guest-speaker-list">
+            <li>KuronaHearts – Special Guest Speaker on Cosplay 101: Preparing for ETSUCON</li>
+        </ul>
+    
+        <p>Are you interested in speaking at one of our events? <br>
+        Reach out to us, and let’s collaborate!</p>
+    </section>
+    
+
+    <script>
+
+       function showTab(tabId) {
+            
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+
+            const tabButtons = document.querySelectorAll(".tab");
+            tabButtons.forEach(button => button.classList.remove("active"));
+
+            document.getElementById(tabId).classList.add("active");
+
+            event.currentTarget.classList.add("active");
+        }
+
+        let slides = document.querySelectorAll(".carousel-slide");
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            slides[index].classList.add("active");
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            showSlide(currentIndex);
+        }
+
+        function autoChangeSlide() {
+            changeSlide(1);
+        }
+
+        setInterval(autoChangeSlide, 5000); 
+        showSlide(currentIndex); 
+        
+    </script>
+
+</body>
+</html>
