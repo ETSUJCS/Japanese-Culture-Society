@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese Culture Society</title>
+    <meta name="author" content="Zachary Story">
+    <meta name="date" content="2025-02-12">
+    <meta name="last revised" content="2025-02-14">
+    <meta name="description" content="ETSU Japanese Culture Society">
+    <meta name="keywords" content="japanese, culture society, etsu, clubs, japan">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Georgia, serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: wheat;
+        }
+
+        /* Logo Section */
+        .logo-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            flex-wrap: nowrap;  /* Prevents logos from wrapping to the next line */
+            width: 100%;
+            gap: 10px; /* Adds spacing between elements */
+            overflow: hidden; /* Ensures nothing spills out */
+        }
+
+
+        .logo {
+            width: 150px; /* Slightly smaller for better responsiveness */
+            height: auto;
+            max-width: 20%; /* Prevents logos from being too large */
+        }
+
+        h1 {
+            text-align: center;
+            color: #00053E;
+            font-size: 40px;
+            margin: 0;
+            flex-grow: 1; /* Allows resizing without breaking layout */
+        }
+
+        /* Tabs */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allows stacking on smaller screens */
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            background: #00053E;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .tab:hover {
+            background: #002080;
+        }
+
+        .tab.active {
+            background: #FF5733;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 2px solid #00053E;
+            border-radius: 5px;
+            max-width: 90%;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Member List */
+        ul.member-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Allows text and images to stack on smaller screens */
+        }
+
+        .picture {
+            max-width: 150px;
+            height: auto;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .member-info {
+            font-size: 18px;
+            color: #00053E;
+            font-weight: bold;
+        }
+
+        /* Shirt Image */
+        .shirt-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .shirt-picture {
+            max-width: 90%;
+            height: auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 90%;  /* Make it responsive */
+            max-width: 766px; 
+            height: auto;
+            aspect-ratio: 16 / 9; /* Maintains aspect ratio */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            text-align: center; 
+            background-color: #00053E;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide img {
+            width: 100%;  
+            height: 100%;
+            object-fit: contain; /* Ensures the image scales properly */
+            border-radius: 10px;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            width: 90%;
+            text-align: center;
+            border-radius: 5px;
+            z-index: 1; 
+            opacity: 1; 
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Event List */
+        ul.event-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-list li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #00053E;
+        }
+
+        .event-name {
+            font-weight: bold;
+            color: #2A4D73;
+        }
+
+        .event-date {
+            font-size: 16px;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        /* Grid for Events */
+        .event-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 35px;
+            }
+
+            .logo {
+                max-width: 120px;
+            }
+
+            .tab {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+
+            .carousel-container {
+                max-width: 90%;
+            }
+
+            .event-container {
+                grid-template-columns: repeat(1, 1fr); /* Stack events in single column */
+            }
+        }
+
+        /* Adjust for smaller screens */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: row; /* Keeps logos in a row */
+                flex-wrap: nowrap; /* Prevents stacking */
+            }
+
+            .logo {
+                width: 100px; /* Smaller logos on mobile */
+                max-width: 25%; /* Ensures they scale */
+            }
+
+            h1 {
+                font-size: 30px; /* Slightly smaller heading */
+            }
+            
+
+            .member {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .picture {
+                max-width: 120px;
+                margin-bottom: 10px;
+            }
+
+            .tab {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .carousel-container {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo-container {
+                flex-direction: column; /* Stacks logos above and below title */
+                gap: 5px;
+            }
+            .logo {
+                max-width: 80px; /* Makes logos smaller */
+            }
+            h1 {
+                font-size: 30px; /* Adjusts title size */
+            }
+        }
+
+
+        @media (max-width: 480px) {
+            body {
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .tab {
+                font-size: 10px;
+                padding: 5px 8px;
+            }
+
+            .carousel-container {
+                max-width: 95%;
+            }
+
+            .event-container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .shirt-picture {
+                max-width: 100%;
+            }
+
+            .language-switcher button {
+                padding: 10px 20px;
+                background-color: #00053E;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+            .language-switcher button:hover {
+                background-color: #FF5733;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+         
+        <img src="images/Culture Society Logo.jpg" alt="Logo" class="logo left">
+        <h1>日本文化会へようこそ！</h1>
+        <a href="index.html" class="language-switcher">
+            <button>English</button>
+        </a>        
+        <img src="images/Culture Society Logo.jpg" alt="Logo" class="logo right">
+       
+    </div>
+        
+    <hr>
+
+    <div class="tab-container">
+        <button class="tab active" onclick="showTab('about')">私たちについて</button>
+        <button class="tab" onclick="showTab('membership')">メンバーシップ</button>
+        <button class="tab" onclick="showTab('keyfigure')">キーフィギュア</button>
+        <button class="tab" onclick="showTab('schedule')">イベントスケジュール</button>
+        <button class="tab" onclick="showTab('sponsor')">スポンサー</button>
+        <button class="tab" onclick="showTab('guest-speakers')">ゲストスピーカー</button>
+        <button class="tab" onclick="showTab('contact')">お問い合わせ</button>
+    </div>
+    
+
+    <section id="about" class='tab-content active'>
+           
+        <h3>私たちについて:</h3>
+        
+        <p>
+            日本文化協会は、学生主導の組織で、日本文化を探求し、祝うことを目的としています。私たちの使命は、伝統的な日本文化や現代的な影響、そして日本語を学びながら日本の豊かな文化に対する理解と感謝を促進することです。
+        </p>
+
+        <hr>
+
+        <h3>私たちの活動内容:</h3>
+
+        <p>
+            私たちは毎週水曜日の午後6:30にサム・ウィルソン・ホール322号室で定期的に会合を開いています。その会合では以下のトピックについて話し合います：
+        </p>
+
+        <ul>
+            <li><b>文化イベント</b> – 伝統的な日本の祭りや現代的な文化イベントを体験し、季節ごとの祝い事や文化的な展示を楽しみます。</li>
+            <li><b>言語と学び</b> – 日本語の練習セッションや、日本の歴史、習慣、マナーについてのディスカッションに参加します。</li>
+            <li><b>食文化と料理</b> – 日本の料理に関する知識を深め、料理イベントや食事の試食を通じてその味を体験します。</li>
+            <li><b>コミュニティとネットワーキング</b> – 同じ興味を持つ仲間と出会い、楽しいプロジェクトを共同で進めたり、日本文化に興味を持つ人たちとの友情を築いたりします。</li>
+        </ul>
+
+        <div class="carousel-container">
+
+            <div class="carousel-slide active">
+
+                <img src="images\SportsDay.jpeg" alt="Sports Day">
+                <div class="caption">文化イベント - ETSUでの日本のスポーツデイフェスティバル！
+                </div>
+                
+            </div>
+
+            <div class="carousel-slide">
+                
+                <img src="images/TeaCeremony.jpeg" alt="Tea Ceremony">
+                <div class="caption">茶道の作法を学ぶ - みくさんが出演。。
+                </div>
+                
+            </div>
+
+            <div class="carousel-slide">
+                    
+                <img src="https://img.youtube.com/vi/OuklTM3FEx0/maxresdefault.jpg" alt="Soran Bushi">
+                <div class="caption">ETSU、ナッシュビル桜祭り2024でソーラン節の踊りを披露。<a class="link" href="https://www.youtube.com/watch?v=OuklTM3FEx0" target="_blank">こちらをクリックして視聴</a>。
+
+                </div>
+                
+            </div>
+        </div>
+
+    </section>
+       
+    <section id="membership" class="tab-content">
+
+        <h3>メンバーシップと:</h3>
+        <p>
+            学期を通して、私たちはメンバーとゲストが日本文化を直接体験できるさまざまなイベントを開催しています。  
+            食品作りのワークショップから文化的な祝祭、ゲストスピーカーのセッションまで、私たちのイベントは日本の豊かな伝統を学び、つながり、そして深く触れるユニークな機会を提供します。  
+            <br><br> 
+
+            これらの体験を支援するために、私たちはクラブのメンバーシップを提供しています。多くのイベントは誰でも参加できますが、一部は非メンバーに対して入場料が必要です。メンバーになることで、すべての有料イベントに無料で参加できるため、コスト効率よくイベントに参加しながらクラブをサポートすることができます。さらに、メンバーには独占的な
+            <b>日本文化協会のTシャツ</b>を購入するオプションもあります。
+        </p>
+        
+        
+        <div class="shirt-container">
+            <img class="shirt-picture" src="images/Shirts.jpg" alt="Japanese Culture Society T-Shirts">  
+        </div>  
+        
+        <p>
+            <b>メンバーシップ料金:</b>
+        </p>
+
+        <ul>
+            <li><b>20ドル</b> – クラブのメンバーシップと日本文化協会のTシャツ（<b>2024年秋学期 & 2025年春学期</b>）が含まれます。</li>
+            <li><b>15ドル</b> – メンバーシップのみ（Tシャツなし）、両学期分。</li>
+            <li>非メンバーは、有料イベントに参加する際、イベントごとに<font color="red"><b>2ドル〜5ドル</b></font>の入場料を支払うことで参加可能です。</li>
+        </ul>
+
+        <p>
+            メンバーは、材料や食材が限られている場合、イベントに優先的にアクセスできます。
+            <br><br>
+            <b>いくつかの有料イベントには以下が含まれます:</b>
+        </p>
+
+        <ul>
+            <li><b>餅作り</b> – 日本の伝統的な餅を作り、楽しむ方法を学びます。</li>
+            <li><b>寿司作り</b> – 寿司やにぎりの作り方を学びます。</li>
+            <li><b>スナック試食</b> – 伝統的および現代的な日本のスナックをサンプルします。</li>
+            <li><b>ゲストスピーカーセッション</b> – 日本語、文化、歴史の専門家と交流します。</li>
+        </ul>
+        
+
+    </section>
+
+    <section id="keyfigure" class="tab-content">
+            
+        <h3>キーフィギュア:</h3>
+            
+        <ul class="member-list">
+                
+            <li class="member">
+                <img class="picture" src="images/Tezuka picture.jpg" alt="Tezuka-Arnold">
+                <div class="member-info">じゅんこ てづか-アーノルド- クラブの責任者</div>
+            </li>
+                
+            <li class="member">
+                <img class="picture" src="images/Miku.jpg" alt="Miku">
+                <div class="member-info">みく くぼた - 日本アウトリーチイニシアティブ (JOI) コーディネーター</div>
+            </li>
+                
+            <li class="member">
+                <img class="picture" src="images/Alex.jpg" alt="Alex">
+                <div class="member-info">アレックス グレイ - 会長</div>
+            </li>
+                    
+            <li class="member">
+                <img class="picture" src="images/Adam.jpeg" alt="Adam">
+                <div class="member-info">アダム ミラー - 副会長</div>
+            </li>
+                    
+            <li class="member">
+                <img class="picture" src="images/Rebecca.jpg" alt="Rebecca">
+                <div class="member-info">レベッカ ストーリー - 秘書</div>
+            </li>
+                    
+            <li class="member">
+                <img class="picture" src="images/Jade.jpeg" alt="Jade">
+                <div class="member-info">ジェイド シェルトン - 財務</div>
+            </li>
+            
+        </ul>
+        </section>
+        
+        <section id="schedule" class="tab-content">
+            <h3>イベントスケジュール:</h3>
+
+        <p>こちらは2025年春の予定イベントのリストです。(状況により変更される場合がありますのでご注意ください)</p>
+            
+        <div class="event-container">
+            <ul class="event-list">
+                <li><span class="event-name">日本のニンジャゴーポストカード</span> <span class="event-date">(01/29)</span></li>
+                <li><span class="event-name">日本のボードゲームナイト</span> <span class="event-date">(02/05)</span></li>
+                <li><span class="event-name">日本のお菓子テイスティング/クラフト</span> <span class="event-date">(02/12)</span></li>
+                <li><span class="event-name">寿司/握り（有料イベント）</span> <span class="event-date">(02/19)</span></li>
+                <li><span class="event-name">アニメ/マンガ</span> <span class="event-date">(02/26)</span></li>                    
+                <li><span class="event-name">コスプレ101 feat. ゲストスピーカー - KuronaHearts</span> <span class="event-date">(03/01) 土曜日のイベント</span></li>
+                <li><span class="event-name">日本のことわざとスラング</span> <span class="event-date">(03/05)</span></li>
+                <li><span class="event-name">餅作り/デザート（有料イベント）</span> <span class="event-date">(03/12)</span></li>
+            </ul>
+                
+            <ul class="event-list">
+                <li><span class="event-name">スポーツデー</span> <span class="event-date">スポーツデー (3月または4月予定) 土曜日のイベント</span></li>
+                <li><span class="event-name">春休み（イベントなし）</span> <span class="event-date">(03/19)</span></li>
+                <li><span class="event-name">着物/浴衣の試着と学び</span> <span class="event-date">(03/26)</span></li>
+                <li><span class="event-name">折り紙/水引結び</span> <span class="event-date">(04/02)</span></li>
+                <li><span class="event-name">日本の学生に質問</span> <span class="event-date">(04/09)</span></li>
+                <li><span class="event-name">おみくじ作り</span> <span class="event-date">(04/16)</span></li>
+                <li><span class="event-name">映画/日本のポットラック</span> <span class="event-date">(04/23)</span></li>
+                <li><span class="event-name">年度末パーティー</span> <span class="event-date">(04/30)</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="tab-content">
+        <h2>お問い合わせ:</h2>
+        <p>最新の情報は私たちのDiscordでチェックしてください。<br>
+            これらのイベントでお会いできることを楽しみにしています。
+        </p>
+    </section>
+    
+    <section id="sponsor" class="tab-content">
+        <h2>スポンサーのご紹介:</h2>
+        <p>私たちのクラブを支援してくださるビジネスや個人の皆様に深く感謝しています。皆様のご支援により、文化的なイベントを開催し、資料を提供し、コミュニティの体験を豊かにしています。</p>
+    
+        <ul id="sponsor-list">
+            <li><i>現在、スポンサーリストは空です。最初にサポートしていただける方をお待ちしています！</i></li>
+        </ul>
+    
+        <p>クラブのスポンサーにご興味がありますか？<br>
+        ご連絡いただければ、スポンサーとしてどのように貢献できるかをご案内します。また、スポンサーとしてお名前をこちらに掲載することができます。</p>
+    </section>
+    
+    <section id="guest-speakers" class="tab-content">
+        <h2>特別ゲストスピーカー:</h2>
+        <p>私たちは、日本の文化、歴史、言語などに関する知識と経験を共有してくださるゲストスピーカーをお迎えできることを光栄に思います。</p>
+        <ul id="guest-speaker-list">
+            <li>KuronaHearts – コスプレ101: ETSUCONに向けた準備に関する特別ゲストスピーカー</li>
+        </ul>
+    
+        <p>イベントで講演にご興味がありますか？<br>
+        ご連絡いただければ、一緒にコラボレーションしましょう！</p>
+    </section>
+    
+    
+
+    <script>
+
+       function showTab(tabId) {
+            
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+
+            const tabButtons = document.querySelectorAll(".tab");
+            tabButtons.forEach(button => button.classList.remove("active"));
+
+            document.getElementById(tabId).classList.add("active");
+
+            event.currentTarget.classList.add("active");
+        }
+
+        let slides = document.querySelectorAll(".carousel-slide");
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            slides[index].classList.add("active");
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            showSlide(currentIndex);
+        }
+
+        function autoChangeSlide() {
+            changeSlide(1);
+        }
+
+        setInterval(autoChangeSlide, 5000); 
+        showSlide(currentIndex); 
+        
+    </script>
+
+</body>
+</html>
