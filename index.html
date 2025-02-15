@@ -21,13 +21,14 @@
         /* Logo Section */
         .logo-container {
             display: flex;
-            align-items: center;  /* Keeps logos and text aligned */
-            justify-content: center; /* Centers everything */
-            flex-wrap: wrap; /* Allows wrapping for small screens */
-            gap: 10px; /* Adds space between items */
+            justify-content: center; 
+            align-items: center;
+            flex-wrap: nowrap;  /* Prevents logos from wrapping to the next line */
             width: 100%;
-            text-align: center;
+            gap: 10px; /* Adds spacing between elements */
+            overflow: hidden; /* Ensures nothing spills out */
         }
+
 
         .logo {
             width: 150px; /* Slightly smaller for better responsiveness */
@@ -286,6 +287,20 @@
                 height: auto;
             }
         }
+
+        @media (max-width: 600px) {
+            .logo-container {
+                flex-direction: column; /* Stacks logos above and below title */
+                gap: 5px;
+            }
+            .logo {
+                max-width: 80px; /* Makes logos smaller */
+            }
+            h1 {
+                font-size: 30px; /* Adjusts title size */
+            }
+        }
+
 
         @media (max-width: 480px) {
             body {
