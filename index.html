@@ -124,7 +124,7 @@
             max-width: 90%;
             height: auto;
         }
-
+        /* Carousel Images */
         .carousel-container {
             position: relative;
             width: 90%;  /* Make it responsive */
@@ -560,7 +560,7 @@
     
 
     <script>
-
+        /* Shows the active tab */
        function showTab(tabId) {
             
             const tabs = document.querySelectorAll(".tab-content");
@@ -576,12 +576,14 @@
 
         let slides = document.querySelectorAll(".carousel-slide");
         let currentIndex = 0;
-
+        
+        /* Updates the active slide */
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove("active"));
             slides[index].classList.add("active");
         }
-
+        
+        /* Changes the current slide*/
         function changeSlide(direction) {
             currentIndex += direction;
             if (currentIndex >= slides.length) currentIndex = 0;
