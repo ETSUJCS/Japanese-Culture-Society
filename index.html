@@ -230,6 +230,16 @@
             margin: 0 auto;
         }
 
+        .event-banner {
+            background-color: #FF8A8A; 
+            color: #000; /* Black text for readability */
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             h1 {
@@ -527,9 +537,10 @@
     </section>
 
     <section id="weeklyevent" class="tab-content">
+        <div id="event-warning" class="event-banner"></div>
         <h2>This Week's Event:</h2>
             <p>
-                This week's meeting (02/19/2025), we will be making and eating sushi rolls. The ingredients for this event will be:
+                This week's meeting (02/26/2025), we will be making and eating sushi rolls. The ingredients for this event will be:
             </p>
             <ul>
                 <li>Cooked rice</li>
@@ -548,7 +559,7 @@
         <hr>
         <h3>Next Week's Event:</h3>
         <p>
-            Next week's meeting (02/26/2025), we will discussing Japanese Animation and Manga.
+            Next week's meeting (03/05/2025), we will discussing Japanese Animation and Manga.
         </p>
     </section>
     
@@ -623,6 +634,20 @@
 
         setInterval(autoChangeSlide, 5000); 
         showSlide(currentIndex); 
+
+        // Set the new event date if postponed; leave empty ("") if not postponed
+        let newEventDate = "February 26th"; // Change this value when the event is postponed
+
+        // Get the banner element
+        let banner = document.getElementById("event-warning");
+
+        // Check if there's a postponement
+        if (newEventDate) {
+            banner.innerHTML = `⚠️ Sushi Making event has been postponed to ${newEventDate} due to snow. Stay warm and see you next week. ⚠️`;
+            banner.style.display = "block"; // Show the banner
+        } else {
+            banner.style.display = "none"; // Hide the banner when no postponement is set
+        }
         
     </script>
     <footer>
