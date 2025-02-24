@@ -182,11 +182,10 @@
                 <li><span class="event-name">Japanese Ninjago Post Cards</span> <span class="event-date">(01/29)</span></li>
                 <li><span class="event-name">Japanese Board Game Night</span> <span class="event-date">(02/05)</span></li>
                 <li><span class="event-name">Japanese Snack Tastings/Crafts</span> <span class="event-date">(02/12)</span></li>
-                <li><span class="event-name">Sushi/Nigiri (Paid Event)</span> <span class="event-date">(02/19)</span></li>
-                <li><span class="event-name">Animation/Manga</span> <span class="event-date">(02/26)</span></li>                    
+                <li><span class="event-name">Sushi/Nigiri (Paid Event)</span> <span class="event-date">(02/26)</span></li>
                 <li><span class="event-name">Cosplay101 feat. Guest Speaker - KuronaHearts</span> <span class="event-date">(03/01) Saturday event</span></li>
-                <li><span class="event-name">Japanese Proverbs and Slang</span> <span class="event-date">(03/05)</span></li>
-                <li><span class="event-name">Mochi Making/Deserts (Paid Event)</span> <span class="event-date">(03/12)</span></li>
+                <li><span class="event-name">Animation/Manga</span> <span class="event-date">(03/05)</span></li>                    
+                <li><span class="event-name">Japanese Proverbs and Slang</span> <span class="event-date">(03/12)</span></li>
             </ul>
                 
             <ul class="event-list">
@@ -303,14 +302,14 @@
         showSlide(currentIndex); 
 
         // Set the new event date if postponed; leave empty ("") if not postponed
-        let newEventDate = "February 26th"; // Change this value when the event is postponed
+        let newEventDate = ""; // Change this value when the event is postponed
 
         // Get the banner element
         let banner = document.getElementById("event-warning");
 
         // Check if there's a postponement
         if (newEventDate) {
-            banner.innerHTML = `⚠️ Sushi Making event has been postponed to ${newEventDate} due to snow. Stay warm and see you next week. ⚠️`;
+            banner.innerHTML = `⚠️ event has been postponed to ${newEventDate}. ⚠️`;
             banner.style.display = "block"; // Show the banner
         } else {
             banner.style.display = "none"; // Hide the banner when no postponement is set
