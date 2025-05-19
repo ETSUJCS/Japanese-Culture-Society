@@ -8,7 +8,7 @@ To make edits to the webpage, you will want to go to the index.html file and the
 4. Some of the information will need to be updated every fall semester when it is time to buy T-Shirts. You might want to keep a note on their if you cannot get an example image of the shirts.
 5. The site must still remain appropriate with ETSU policy to be listed on ETSU's language page. This means no foul language, no political stances, just the culture society.
 6. When making changes on Github, it will sometimes take 15 minutes for those changes to be visible, be patient and aware incase there are any mistakes.
-7. If you need to add any new information, you can use <p>"Info put here"</p>, if you have any issues, you can use chatgpt to a extent, it can do basic things.
+7. You can add new information between the p tags on the index page
 8. If you need to edit the style of the page at all, that is done in the css folder, however be careful as that can change more than what was intended.
 9. If there is no new JOI coordinator, you can delete or comment out that section of Key Figures using the comments.
 10. Images must have an alt field for page readers, look at other images posted. 
